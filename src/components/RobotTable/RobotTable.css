@@ -1,0 +1,104 @@
+.robot-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    font-size: var(--font-body);
+
+}
+
+
+.robot-table thead {
+
+    background: rgba(255, 255, 255, 0.02);
+
+}
+
+
+.robot-table th {
+
+    height: 44px;
+
+    padding: 0 16px;
+
+    text-align: left;
+
+    font-weight: var(--font-weight-semibold);
+
+    color: var(--text);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.robot-table td {
+
+    height: 50px;
+
+    padding: 0 16px;
+
+    color: var(--text-muted);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.robot-table tbody tr {
+
+    transition: background-color 0.2s ease;
+
+}
+
+
+.robot-table tbody tr:hover {
+
+    background: rgba(255, 255, 255, 0.03);
+
+}
+
+
+.robot-table td:first-child {
+
+    color: var(--text);
+
+    font-weight: var(--font-weight-semibold);
+
+}
+
+
+
+.robot-table button {
+
+    padding: 6px 14px;
+
+    background: transparent;
+
+    color: var(--accent);
+
+    border: 1px solid var(--accent);
+
+    border-radius: 2px;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    transition: all 0.2s ease;
+
+}
+
+
+.robot-table button:hover {
+
+    background: var(--accent);
+
+    color: #000;
+
+}
