@@ -1,8 +1,9 @@
 import Header from "./components/Header/Header.tsx";
-import Sidebar from "./components/Sidebar/Sidebar.tsx"
+import Sidebar from "./components/Sidebar/Sidebar.tsx";
 
 import MainLayout from "./layouts/MainLayout/MainLayout.tsx";
-import Dashboard from "./pages/Dashboard/Dashboard.tsx";
+
+import AppRouter from "./router/AppRouter";
 
 function App() {
   return (
@@ -10,8 +11,9 @@ function App() {
       header={<Header title="Micro Dashboard" />}
       sidebar={<Sidebar />}
     >
-      <Dashboard />
-    </MainLayout>);
+      <AppRouter />
+    </MainLayout>
+  );
 }
 
 export default App;

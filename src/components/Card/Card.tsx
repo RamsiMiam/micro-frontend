@@ -3,11 +3,12 @@ import "./Card.css";
 interface CardProps {
     title: string;
     children: React.ReactNode;
+    className?: string;
 }
 
-function Card({ title, children }: CardProps) {
+function Card({ title, children, className }: CardProps) {
     return (
-        <section className="card">
+        <section className={`card ${className ?? ""}`}>
 
             <div className="card-header">
                 <h2>{title}</h2>

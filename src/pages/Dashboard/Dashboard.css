@@ -6,10 +6,29 @@
 
     display: grid;
 
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
 
     gap: 20px;
-
+    
+    align-items: start;
     align-content: start;
+
+}
+
+.metric-value {
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+}
+
+.metric-card {
+    height: 120px;
+}
+
+.event-card {
+
+    grid-column: span 3;
 
 }
