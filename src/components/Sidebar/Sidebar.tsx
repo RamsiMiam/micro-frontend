@@ -4,26 +4,35 @@ import SidebarButton from "../SidebarButton/SidebarButton";
 import type { SidebarOption } from "../../types/SidebarOption";
 
 const options: SidebarOption[] = [
+
     {
         id: "dashboard",
         icon: "🏠",
-        label: "Dashboard"
+        label: "Dashboard",
+        path: "/"
     },
+
     {
         id: "robots",
         icon: "🤖",
-        label: "Robots"
+        label: "Robots",
+        path: "/robots"
     },
+
     {
         id: "telemetry",
         icon: "📡",
-        label: "Telemetry"
+        label: "Telemetry",
+        path: "/telemetry"
     },
+
     {
         id: "settings",
         icon: "⚙️",
-        label: "Settings"
+        label: "Settings",
+        path: "/settings"
     }
+
 ];
 
 function Sidebar() {
@@ -37,6 +46,7 @@ function Sidebar() {
                         key={option.id}
                         icon={option.icon}
                         label={option.label}
+                        path={option.path}
                     />
 
                 ))

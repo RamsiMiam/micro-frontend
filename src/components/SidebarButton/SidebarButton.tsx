@@ -1,21 +1,36 @@
+import { NavLink } from "react-router-dom";
 import "./SidebarButton.css";
 
 interface SidebarButtonProps {
 
     label: string;
     icon: string;
+    path: string;
 
 }
 
-function SidebarButton({ label, icon }: SidebarButtonProps) {
+function SidebarButton({
+    label,
+    icon,
+    path
+}: SidebarButtonProps) {
 
     return (
 
-        <button className="sidebar-button">
+        <NavLink
+            to={path}
+            className={({ isActive }) =>
+                isActive
+                    ? "sidebar-button active"
+                    : "sidebar-button"
+            }
+        >
 
-            {icon} {label}
+            <span>{icon}</span>
 
-        </button>
+            <span>{label}</span>
+
+        </NavLink>
 
     );
 
