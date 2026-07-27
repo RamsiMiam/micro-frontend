@@ -1,0 +1,107 @@
+.settings-page {
+
+    flex: 1;
+
+    padding: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+.settings-field {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 16px;
+
+}
+
+
+.settings-field label {
+
+    color: var(--text);
+
+}
+
+
+.settings-field input,
+.settings-field select {
+
+    height: 36px;
+
+    padding: 0 12px;
+
+    background: var(--background);
+
+    border: 1px solid var(--border);
+
+    color: var(--text);
+
+    border-radius: 2px;
+
+}
+
+
+.settings-field input:focus,
+.settings-field select:focus {
+
+    outline: none;
+
+    border-color: var(--accent);
+
+}
+
+
+.settings-checkbox {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.settings-checkbox input {
+
+    accent-color: var(--accent);
+
+}
+
+
+.save-button {
+
+    align-self: flex-end;
+
+    padding: 8px 20px;
+
+    background: transparent;
+
+    color: var(--accent);
+
+    border: 1px solid var(--accent);
+
+    border-radius: 2px;
+
+    cursor: pointer;
+
+}
+
+
+.save-button:hover {
+
+    background: var(--accent);
+
+    color: #000;
+
+}
