@@ -1,0 +1,30 @@
+:root {
+
+    --background: #1A1D21;
+
+    --surface: #25292E;
+
+    --surface-hover: #31363C;
+
+    --surface-active: #3A4149;
+
+    --header: #202428;
+
+    --border: #40464F;
+
+    --text: #F0F0F0;
+
+    --text-secondary: #A9B0B8;
+
+    --accent: #E0B000;
+
+    --font-family: "Segoe UI", "Inter", sans-serif;
+
+    --font-title: 22px;
+    --font-body: 16px;
+    --font-small: 14px;
+
+    --font-weight-normal: 500;
+    --font-weight-semibold: 600;
+
+}

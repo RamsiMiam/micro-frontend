@@ -1,0 +1,60 @@
+.sidebar-button {
+
+    width: 100%;
+
+    height: 46px;
+
+    background-color: transparent;
+
+    border: 1px solid transparent;
+
+    border-radius: 3px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 0 14px;
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: var(--font-body);
+
+    font-weight: var(--font-weight-semibold);
+
+    letter-spacing: .3px;
+
+    cursor: pointer;
+
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+
+}
+
+.sidebar-button:hover {
+
+    background-color: var(--surface-hover);
+
+    border-color: rgba(255,255,255,.08);
+
+    box-shadow:
+        inset 3px 0 0 var(--accent);
+
+}
+
+.sidebar-button.active {
+
+    background-color: var(--surface-active);
+
+    border-color: rgba(255,255,255,.08);
+
+    box-shadow:
+        inset 4px 0 0 var(--accent);
+
+}
