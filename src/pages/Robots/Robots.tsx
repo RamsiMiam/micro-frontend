@@ -2,6 +2,7 @@ import RobotTable from "../../components/RobotTable/RobotTable";
 import type { Robot } from "../../types/Robot";
 import RobotDetails from "../../components/RobotDetails/RobotDetails";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./Robots.css";
 
@@ -29,8 +30,9 @@ const robots: Robot[] = [
 
 function Robots() {
 
-    const [selectedRobot, setSelectedRobot] = useState<Robot | null>(null);
+    const navigate = useNavigate();
 
+    const [selectedRobot, setSelectedRobot] = useState<Robot | null>(null);
 
     return (
 
@@ -48,6 +50,11 @@ function Robots() {
                     <RobotDetails
                         robot={selectedRobot}
                         onClose={() => setSelectedRobot(null)}
+                        onTelemetry={(robot) => {
+
+                            navigate(`/robots/${robot.id}/telemetry`);
+
+                        }}
                     />
 
                 )

@@ -1,0 +1,51 @@
+.motor-diagnostics {
+
+    background: var(--surface);
+
+    border-radius: 8px;
+
+    padding: 20px;
+
+    min-width: 600px;
+
+}
+
+
+.motor-diagnostics-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 16px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.motor-diagnostics-content {
+
+    padding: 16px;
+
+}
+
+.motor-diagnostics-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 1000;
+
+}

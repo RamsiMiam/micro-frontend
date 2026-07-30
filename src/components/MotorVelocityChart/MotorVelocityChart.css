@@ -1,0 +1,39 @@
+.velocity-chart {
+
+    width: 100%;
+
+    height: 180px;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.chart-y-label,
+.chart-x-label {
+
+    font-size: 10px;
+
+    color: var(--text-muted);
+
+}
+
+
+.chart-y-label {
+
+    padding-left: 8px;
+
+    margin-bottom: 2px;
+
+}
+
+
+.chart-x-label {
+
+    text-align: center;
+
+    margin-top: 2px;
+
+}
