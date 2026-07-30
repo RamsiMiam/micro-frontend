@@ -1,10 +1,28 @@
 import { useEffect } from "react";
 
+import type { VelocityPoint } from "../../types/VelocityPoint";
+import MotorVelocityChart from "../MotorVelocityChart/MotorVelocityChart";
 import "./MotorDiagnostics.css";
 
 interface MotorDiagnosticsProps {
     onClose: () => void;
 }
+
+export const mockVelocityData: VelocityPoint[] = [
+    { time: "00:00", current: 0.10, target: 0.50 },
+    { time: "00:10", current: 0.18, target: 0.50 },
+    { time: "00:20", current: 0.27, target: 0.50 },
+    { time: "00:30", current: 0.35, target: 0.50 },
+    { time: "00:40", current: 0.42, target: 0.50 },
+    { time: "00:50", current: 0.47, target: 0.50 },
+    { time: "01:00", current: 0.52, target: 0.50 },
+    { time: "01:10", current: 0.49, target: 0.50 },
+    { time: "01:20", current: 0.51, target: 0.50 },
+    { time: "01:30", current: 0.48, target: 0.50 },
+    { time: "01:40", current: 0.50, target: 0.50 },
+    { time: "01:50", current: 0.53, target: 0.50 },
+    { time: "02:00", current: 0.50, target: 0.50 }
+];
 
 function MotorDiagnostics({
     onClose
@@ -59,19 +77,57 @@ function MotorDiagnostics({
 
                 <div className="motor-diagnostics-content">
 
-                    Front Left Chart
+                    <div className="motor-grid">
 
-                    <br />
+                        <div className="motor-chart-card">
 
-                    Front Right Chart
+                            <h3>
+                                Front Left
+                            </h3>
 
-                    <br />
+                            <MotorVelocityChart
+                                data={mockVelocityData}
+                            />
 
-                    Rear Left Chart
+                        </div>
 
-                    <br />
+                        <div className="motor-chart-card">
 
-                    Rear Right Chart
+                            <h3>
+                                Front Right
+                            </h3>
+
+                            <MotorVelocityChart
+                                data={mockVelocityData}
+                            />
+
+                        </div>
+
+                        <div className="motor-chart-card">
+
+                            <h3>
+                                Rear Left
+                            </h3>
+
+                            <MotorVelocityChart
+                                data={mockVelocityData}
+                            />
+
+                        </div>
+
+                        <div className="motor-chart-card">
+
+                            <h3>
+                                Rear Right
+                            </h3>
+
+                            <MotorVelocityChart
+                                data={mockVelocityData}
+                            />
+
+                        </div>
+
+                    </div>
 
                 </div>
 
