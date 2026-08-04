@@ -8,17 +8,22 @@
 
     width: 320px;
 
+    height: calc(100vh - 40px);
+
     background: var(--surface);
 
     border: 1px solid var(--border);
 
-    height: calc(100vh - 40px);
-
     padding: 16px;
+
+    display: flex;
+
+    flex-direction: column;
 
     z-index: 10;
 
 }
+
 
 
 .robot-details-header {
@@ -29,11 +34,22 @@
 
     align-items: center;
 
-    border-bottom: 1px solid var(--border);
-
     padding-bottom: 12px;
 
+    border-bottom: 1px solid var(--border);
+
 }
+
+
+
+.robot-details-header h2 {
+
+    margin: 0;
+
+    font-size: var(--font-body);
+
+}
+
 
 
 .robot-details-header button {
@@ -51,12 +67,66 @@
 }
 
 
-.robot-details-content p {
+
+.robot-details-content {
+
+    margin-top: 20px;
+
+}
+
+
+
+.detail-row {
 
     display: flex;
 
     justify-content: space-between;
 
+    padding: 12px 0;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+
+.detail-row span:first-child {
+
     color: var(--text-muted);
+
+}
+
+
+
+.robot-details-actions {
+
+    margin-top: auto;
+
+}
+
+
+
+.telemetry-button {
+
+    width: 100%;
+
+    height: 38px;
+
+    background: transparent;
+
+    color: var(--accent);
+
+    border: 1px solid var(--accent);
+
+    cursor: pointer;
+
+}
+
+
+.telemetry-button:hover {
+
+    background: var(--accent);
+
+    color: #000;
 
 }

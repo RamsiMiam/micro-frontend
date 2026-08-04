@@ -1,0 +1,99 @@
+.robot-telemetry-page {
+
+    flex: 1;
+
+    padding: 20px;
+
+}
+
+
+
+.telemetry-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.telemetry-header h1 {
+
+    margin: 0;
+
+    font-size: 24px;
+
+}
+
+
+
+.telemetry-header span {
+
+    color: var(--accent);
+
+}
+
+
+
+.telemetry-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+
+}
+
+
+
+.telemetry-data {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    width: 100%;
+
+}
+
+
+
+.telemetry-data p {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin: 0;
+
+    color: var(--text-muted);
+
+}
+
+
+
+.telemetry-data span {
+
+    color: var(--text);
+
+    font-weight: var(--font-weight-semibold);
+
+}
+
+
+
+.chart-card {
+
+    min-height: 300px;
+
+}

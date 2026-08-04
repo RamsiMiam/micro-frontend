@@ -20,13 +20,6 @@ const options: SidebarOption[] = [
     },
 
     {
-        id: "telemetry",
-        icon: "📡",
-        label: "Telemetry",
-        path: "/telemetry"
-    },
-
-    {
         id: "settings",
         icon: "⚙️",
         label: "Settings",

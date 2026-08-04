@@ -2,8 +2,8 @@ import { Routes, Route } from "react-router-dom";
 
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Robots from "../pages/Robots/Robots";
-import Telemetry from "../pages/Telemetry/Telemetry";
 import Settings from "../pages/Settings/Settings";
+import RobotTelemetry from "../pages/RobotTelemetry/RobotTelemetry";
 
 function AppRouter() {
     return (
@@ -20,13 +20,13 @@ function AppRouter() {
             />
 
             <Route
-                path="/telemetry"
-                element={<Telemetry />}
+                path="/settings"
+                element={<Settings />}
             />
 
             <Route
-                path="/settings"
-                element={<Settings />}
+                path="/robots/:id/telemetry"
+                element={<RobotTelemetry />}
             />
 
         </Routes>
