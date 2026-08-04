@@ -6,6 +6,18 @@ import Card from "../../components/Card/Card";
 
 import MotorVelocityCard from "../../components/MotorVelocityCard/MotorVelocityCard";
 
+import type { Pose } from "../../types/Pose";
+
+import TrajectoryCard from "../../components/RobotPositionCard/RobotPositionCard";
+
+const mockTrajectory: Pose[] = [
+    { x: 0, y: 0, theta: 0 },
+    { x: 0.5, y: 0.1, theta: 0.2 },
+    { x: 1.0, y: 0.4, theta: 0.5 },
+    { x: 1.5, y: 0.9, theta: 0.8 },
+    { x: 2.0, y: 1.5, theta: 1.1 }
+];
+
 function RobotTelemetry() {
 
     const { id } = useParams();
@@ -118,17 +130,7 @@ function RobotTelemetry() {
 
                 <MotorVelocityCard />
 
-
-
-                <Card
-                    title="Position Tracking"
-                    className="chart-card"
-                >
-
-                    Position graph
-
-
-                </Card>
+                <TrajectoryCard />
 
 
             </section>
