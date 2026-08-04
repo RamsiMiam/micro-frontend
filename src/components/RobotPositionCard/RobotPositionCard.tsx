@@ -2,13 +2,11 @@ import { useState } from "react";
 
 import Card from "../Card/Card";
 import TrajectoryMap from "../TrajectoryMap/TrajectoryMap";
-//import TrajectoryDiagnostics from "../TrajectoryDiagnostics/TrajectoryDiagnostics";
-import MotorDiagnostics from "../MotorDiagnostics/MotorDiagnostics";
+import TrajectoryDiagnostics from "../TrajectoryDiagnostics/TrajectoryDiagnostics";
 
 import type { Pose } from "../../types/Pose";
 
 import "./RobotPositionCard.css";
-
 
 const mockTrajectory: Pose[] = [
     { x: 0, y: 0, theta: 0 },
@@ -91,16 +89,12 @@ function TrajectoryCard() {
 
             {
                 showDiagnostics && (
-                    <MotorDiagnostics
+                    
+                    <TrajectoryDiagnostics
                         onClose={() =>
                             setShowDiagnostics(false)
                         }
                     />
-                    // <TrajectoryDiagnostics
-                    //     onClose={() =>
-                    //         setShowDiagnostics(false)
-                    //     }
-                    // />
 
                 )
             }

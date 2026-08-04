@@ -1,0 +1,143 @@
+.trajectory-diagnostics-overlay {
+
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    z-index: 999;
+
+    backdrop-filter: blur(4px);
+
+}
+
+.trajectory-diagnostics {
+
+    width: min(1100px, 90vw);
+    height: min(700px, 90vh);
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+}
+
+.trajectory-diagnostics-header {
+
+    padding: 18px 24px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.trajectory-diagnostics-header h2 {
+
+    margin: 0;
+
+    font-size: 1.2rem;
+
+}
+
+.trajectory-diagnostics-content {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+
+    padding: 20px;
+
+    flex: 1;
+
+}
+
+.trajectory-metrics {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 16px;
+
+}
+
+.trajectory-metric-card {
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 14px;
+
+    border-radius: 8px;
+
+    background: var(--surface-secondary);
+
+    border: 1px solid var(--border);
+
+}
+
+.metric-label {
+
+    font-size: 0.8rem;
+
+    color: var(--text-muted);
+
+}
+
+.metric-value {
+
+    font-size: 1.35rem;
+
+    font-weight: 700;
+
+}
+
+.trajectory-chart-card {
+
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+
+    gap: 12px;
+
+    padding: 18px;
+
+    border-radius: 8px;
+
+    background: var(--surface-secondary);
+
+    border: 1px solid var(--border);
+
+}
+
+.trajectory-chart-card h3 {
+
+    margin: 0;
+
+    font-size: 1rem;
+
+}
+
+.trajectory-chart-card>*:last-child {
+
+    flex: 1;
+
+    min-height: 0;
+
+}
