@@ -4,24 +4,26 @@ import Card from "../Card/Card";
 import TrajectoryMap from "../TrajectoryMap/TrajectoryMap";
 import TrajectoryDiagnostics from "../TrajectoryDiagnostics/TrajectoryDiagnostics";
 
+import type { TrajectoryTelemetry } from "../../types/TrajectoryTelemetry";
 import type { Pose } from "../../types/Pose";
 
 import "./RobotPositionCard.css";
 
-const mockTrajectory: Pose[] = [
-    { x: 0, y: 0, theta: 0 },
-    { x: 0.5, y: 0.1, theta: 0.2 },
-    { x: 1.0, y: 0.4, theta: 0.5 },
-    { x: 1.5, y: 0.9, theta: 0.8 },
-    { x: 2.0, y: 1.5, theta: 1.1 }
-];
+interface TrajectoryCardProps {
+    telemetry: TrajectoryTelemetry;
+}
 
-
-function TrajectoryCard() {
+function TrajectoryCard({
+    telemetry
+}: TrajectoryCardProps) {
 
     const [showDiagnostics, setShowDiagnostics] =
         useState(false);
 
+    const trajectory: Pose[] =
+        telemetry.trajectoryHistory.map(
+            sample => sample.state.currentPose
+        );
 
     return (
 
@@ -41,7 +43,7 @@ function TrajectoryCard() {
                         </span>
 
                         <span className="trajectory-value">
-                            2.00 m
+                            {telemetry.currentPose.x.toFixed(2)} m
                         </span>
 
                     </div>
@@ -53,7 +55,7 @@ function TrajectoryCard() {
                         </span>
 
                         <span className="trajectory-value">
-                            1.50 m
+                            {telemetry.currentPose.y.toFixed(2)} m
                         </span>
 
                     </div>
@@ -65,7 +67,11 @@ function TrajectoryCard() {
                         </span>
 
                         <span className="trajectory-value">
-                            63°
+                            (
+                            telemetry.currentPose.theta
+                            * 180
+                            / Math.PI
+                            ).toFixed(0)
                         </span>
 
                     </div>
@@ -80,7 +86,7 @@ function TrajectoryCard() {
                 >
 
                     <TrajectoryMap
-                        path={mockTrajectory}
+                        path={trajectory}
                     />
 
                 </div>
@@ -89,8 +95,9 @@ function TrajectoryCard() {
 
             {
                 showDiagnostics && (
-                    
+
                     <TrajectoryDiagnostics
+                        telemetry={telemetry}
                         onClose={() =>
                             setShowDiagnostics(false)
                         }
