@@ -6,22 +6,44 @@ import Card from "../../components/Card/Card";
 
 import MotorVelocityCard from "../../components/MotorVelocityCard/MotorVelocityCard";
 
-import type { Pose } from "../../types/Pose";
-
 import TrajectoryCard from "../../components/RobotPositionCard/RobotPositionCard";
-
-const mockTrajectory: Pose[] = [
-    { x: 0, y: 0, theta: 0 },
-    { x: 0.5, y: 0.1, theta: 0.2 },
-    { x: 1.0, y: 0.4, theta: 0.5 },
-    { x: 1.5, y: 0.9, theta: 0.8 },
-    { x: 2.0, y: 1.5, theta: 1.1 }
-];
+import useRobotTelemetry from "../../hooks/useRobotTelemetry";
 
 function RobotTelemetry() {
 
     const { id } = useParams();
 
+    const telemetry = useRobotTelemetry(id ?? "");
+
+    const motorTelemetry =
+        telemetry.state
+            ? {
+
+                currentVelocities:
+                    telemetry.state.currentMotorVelocities,
+
+                desiredVelocities:
+                    telemetry.state.desiredMotorVelocities,
+
+                averageVelocityHistory:
+                    telemetry.averageVelocityHistory,
+
+                motorVelocityHistory:
+                    telemetry.motorVelocityHistory
+
+            }
+            : null;
+
+    const trajectoryTelemetry =
+        telemetry.state
+            ? {
+                currentPose:
+                    telemetry.state.currentPose,
+
+                trajectoryHistory:
+                    telemetry.trajectoryHistory
+            }
+            : null;
 
     return (
 
@@ -54,15 +76,11 @@ function RobotTelemetry() {
                         <p>
                             Status
                             <span>
-                                Online
-                            </span>
-                        </p>
-
-
-                        <p>
-                            Battery
-                            <span>
-                                87%
+                                {
+                                    telemetry.connected
+                                        ? "Online"
+                                        : "Offline"
+                                }
                             </span>
                         </p>
 
@@ -96,7 +114,9 @@ function RobotTelemetry() {
                         <p>
                             X
                             <span>
-                                2.35 m
+                                {
+                                    telemetry.state?.currentPose?.x.toFixed(2)
+                                } m
                             </span>
                         </p>
 
@@ -104,7 +124,9 @@ function RobotTelemetry() {
                         <p>
                             Y
                             <span>
-                                1.20 m
+                                {
+                                    telemetry.state?.currentPose?.y.toFixed(2)
+                                } m
                             </span>
                         </p>
 
@@ -115,7 +137,9 @@ function RobotTelemetry() {
                             </span>
 
                             <span>
-                                45°
+                                {
+                                    telemetry.state?.currentPose?.theta.toFixed(2)
+                                }°
                             </span>
 
                         </p>
@@ -128,9 +152,25 @@ function RobotTelemetry() {
 
 
 
-                <MotorVelocityCard />
+                {
+                    motorTelemetry && (
 
-                <TrajectoryCard />
+                        <MotorVelocityCard
+                            telemetry={motorTelemetry}
+                        />
+
+                    )
+                }
+
+                {
+                    trajectoryTelemetry && (
+
+                        <TrajectoryCard
+                            telemetry={trajectoryTelemetry}
+                        />
+
+                    )
+                }
 
 
             </section>

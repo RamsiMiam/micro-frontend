@@ -4,58 +4,15 @@ import TrajectoryComparisonChart from "../TrajectoryComparisonChart/TrajectoryCo
 import type { TrajectoryPoint } from "../../types/TrajectoryPoint";
 
 import "./TrajectoryDiagnostics.css";
+import type { TrajectoryTelemetry } from "../../types/TrajectoryTelemetry";
 
 interface TrajectoryDiagnosticsProps {
+    telemetry: TrajectoryTelemetry;
     onClose: () => void;
 }
 
-export const mockTrajectoryData: TrajectoryPoint[] = [
-    {
-        time: "00:00",
-        currentX: 0.00,
-        currentY: 0.00,
-        targetX: 0.00,
-        targetY: 0.00
-    },
-    {
-        time: "00:10",
-        currentX: 0.48,
-        currentY: 0.40,
-        targetX: 0.50,
-        targetY: 0.45
-    },
-    {
-        time: "00:20",
-        currentX: 0.98,
-        currentY: 0.88,
-        targetX: 1.00,
-        targetY: 0.92
-    },
-    {
-        time: "00:30",
-        currentX: 1.45,
-        currentY: 1.38,
-        targetX: 1.50,
-        targetY: 1.42
-    },
-    {
-        time: "00:40",
-        currentX: 2.01,
-        currentY: 1.84,
-        targetX: 2.00,
-        targetY: 1.90
-    },
-    {
-        time: "00:50",
-        currentX: 2.55,
-        currentY: 2.28,
-        targetX: 2.50,
-        targetY: 2.35
-    }
-];
-
 function TrajectoryDiagnostics({
-    onClose
+    telemetry, onClose
 }: TrajectoryDiagnosticsProps) {
 
     useEffect(() => {
@@ -82,6 +39,49 @@ function TrajectoryDiagnostics({
             );
 
     }, [onClose]);
+
+    const trajectoryData: TrajectoryPoint[] =
+        telemetry.trajectoryHistory.map(sample => ({
+            time: new Date(sample.timestamp).toLocaleTimeString(),
+            currentX: sample.state.currentPose.x,
+            currentY: sample.state.currentPose.y,
+            targetX: sample.state.desiredPose.x,
+            targetY: sample.state.desiredPose.y
+        })
+        );
+    const currentPose = telemetry.currentPose;
+
+    const desiredPose =
+        telemetry.trajectoryHistory.length > 0
+            ? telemetry.trajectoryHistory[
+                telemetry.trajectoryHistory.length - 1
+            ].state.desiredPose
+            : currentPose;
+
+    const currentErrorX = currentPose.x - desiredPose.x;
+
+    const currentErrorY = currentPose.y - desiredPose.y;
+
+    const currentError = Math.sqrt(currentErrorX ** 2 + currentErrorY ** 2);
+
+    const errors =
+        telemetry.trajectoryHistory.map(
+            sample => {
+                const errorX = sample.state.currentPose.x -
+                    sample.state.desiredPose.x;
+                const errorY = sample.state.currentPose.y -
+                    sample.state.desiredPose.y;
+                return Math.sqrt(errorX ** 2 + errorY ** 2);
+            });
+
+    const averageError =
+        errors.length > 0
+            ? errors.reduce((sum, error) =>
+                sum + error, 0) / errors.length : 0;
+
+    const maximumError = errors.length > 0 ? Math.max(...errors) : 0;
+
+    const headingError = (currentPose.theta - desiredPose.theta) * 180 / Math.PI;
 
     return (
 
@@ -116,7 +116,7 @@ function TrajectoryDiagnostics({
                             </span>
 
                             <span className="metric-value">
-                                0.08 m
+                                {currentError.toFixed(2)} m
                             </span>
 
                         </div>
@@ -128,7 +128,7 @@ function TrajectoryDiagnostics({
                             </span>
 
                             <span className="metric-value">
-                                0.11 m
+                                {averageError.toFixed(2)} m
                             </span>
 
                         </div>
@@ -140,7 +140,7 @@ function TrajectoryDiagnostics({
                             </span>
 
                             <span className="metric-value">
-                                0.32 m
+                                {maximumError.toFixed(2)} m
                             </span>
 
                         </div>
@@ -152,7 +152,7 @@ function TrajectoryDiagnostics({
                             </span>
 
                             <span className="metric-value">
-                                2.4°
+                                {Math.abs(headingError).toFixed(1)}°
                             </span>
 
                         </div>
@@ -166,7 +166,7 @@ function TrajectoryDiagnostics({
                         </h3>
 
                         <TrajectoryComparisonChart
-                            data={mockTrajectoryData}
+                            data={trajectoryData}
                         />
 
                     </div>

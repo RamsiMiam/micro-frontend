@@ -1,31 +1,22 @@
 import { useEffect } from "react";
 
-import type { VelocityPoint } from "../../types/VelocityPoint";
 import MotorVelocityChart from "../MotorVelocityChart/MotorVelocityChart";
+import type { VelocityPoint } from "../../types/VelocityPoint";
 import "./MotorDiagnostics.css";
+import type { MotorVelocitySample } from "../../types/MotorVelocitySample";
+
 
 interface MotorDiagnosticsProps {
+
     onClose: () => void;
+
+    history: MotorVelocitySample[];
+
 }
 
-export const mockVelocityData: VelocityPoint[] = [
-    { time: "00:00", current: 0.10, target: 0.50 },
-    { time: "00:10", current: 0.18, target: 0.50 },
-    { time: "00:20", current: 0.27, target: 0.50 },
-    { time: "00:30", current: 0.35, target: 0.50 },
-    { time: "00:40", current: 0.42, target: 0.50 },
-    { time: "00:50", current: 0.47, target: 0.50 },
-    { time: "01:00", current: 0.52, target: 0.50 },
-    { time: "01:10", current: 0.49, target: 0.50 },
-    { time: "01:20", current: 0.51, target: 0.50 },
-    { time: "01:30", current: 0.48, target: 0.50 },
-    { time: "01:40", current: 0.50, target: 0.50 },
-    { time: "01:50", current: 0.53, target: 0.50 },
-    { time: "02:00", current: 0.50, target: 0.50 }
-];
-
 function MotorDiagnostics({
-    onClose
+    onClose,
+    history
 }: MotorDiagnosticsProps) {
 
     useEffect(() => {
@@ -52,6 +43,73 @@ function MotorDiagnostics({
             );
 
     }, [onClose]);
+
+    const frontLeftData: VelocityPoint[] =
+        history.map(sample => ({
+
+            time:
+                new Date(
+                    sample.timestamp
+                ).toLocaleTimeString(),
+
+            current:
+                sample.current[0],
+
+            target:
+                sample.desired[0]
+
+        }));
+
+
+    const frontRightData: VelocityPoint[] =
+        history.map(sample => ({
+
+            time:
+                new Date(
+                    sample.timestamp
+                ).toLocaleTimeString(),
+
+            current:
+                sample.current[1],
+
+            target:
+                sample.desired[1]
+
+        }));
+
+
+    const rearLeftData: VelocityPoint[] =
+        history.map(sample => ({
+
+            time:
+                new Date(
+                    sample.timestamp
+                ).toLocaleTimeString(),
+
+            current:
+                sample.current[2],
+
+            target:
+                sample.desired[2]
+
+        }));
+
+
+    const rearRightData: VelocityPoint[] =
+        history.map(sample => ({
+
+            time:
+                new Date(
+                    sample.timestamp
+                ).toLocaleTimeString(),
+
+            current:
+                sample.current[3],
+
+            target:
+                sample.desired[3]
+
+        }));
 
     return (
 
@@ -86,7 +144,7 @@ function MotorDiagnostics({
                             </h3>
 
                             <MotorVelocityChart
-                                data={mockVelocityData}
+                                data={frontLeftData}
                             />
 
                         </div>
@@ -98,7 +156,7 @@ function MotorDiagnostics({
                             </h3>
 
                             <MotorVelocityChart
-                                data={mockVelocityData}
+                                data={frontRightData}
                             />
 
                         </div>
@@ -110,7 +168,7 @@ function MotorDiagnostics({
                             </h3>
 
                             <MotorVelocityChart
-                                data={mockVelocityData}
+                                data={rearLeftData}
                             />
 
                         </div>
@@ -122,7 +180,7 @@ function MotorDiagnostics({
                             </h3>
 
                             <MotorVelocityChart
-                                data={mockVelocityData}
+                                data={rearRightData}
                             />
 
                         </div>
